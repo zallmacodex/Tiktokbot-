@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 
-// Ganti dengan token bot Anda
+// bot Anda
 const token = '7994188138:AAHzCkrbNU94wTqqfWUO-An_n7OLuBpaGSQ';
 const bot = new TelegramBot(token, { polling: true });
 
@@ -11,7 +11,7 @@ bot.onText(/\/start/, (msg) => {
 
 bot.on('message', async (msg) => {
     const chatId = msg.chat.id;
-    const urlRegex = /https:\/\/(?:www\.)?tiktok\.com\/[@\w-]+\/video\/\d+/;
+    const urlRegex = /https:\/\/(www\.)?tiktok\.com\/(@[\w.-]+\/video\/\d+|v[t]\.\w+\/[A-Za-z0-9]+)/;
 
     if (urlRegex.test(msg.text)) {
         bot.sendMessage(chatId, "Mau download opsi apa? Video atau audio?", {
